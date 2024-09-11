@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gatos Aleatórios</title>
+    <style>
+        #secao-imagem{
+            
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        #secao-imagem > img{
+            width: 400px;
+            height: 400px;
+            border-radius: 20%;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div id="secao-imagem">
+            <img id="imagem" src="" alt="" class="imagem1">
+            <p id="erro"></p>
+        </div>
+    </main>
+
+   <script>
+    
+    
+    const busca = 'https://cataas.com/cat';
+    async function ChamadorAPI(){
+
+        try{
+            const resposta = await fetch(busca);
+            const obj = await resposta.blob();
+            const urlImagem = URL.createObjectURL(obj);
+        
+            const tagImg = document.getElementById('imagem');
+
+            tagImg.src = urlImagem;
+
+        } catch(erro){
+            document.getElementById('erro').innerHTML = `O gatinho fugiu ;-; <br> Tente novamente mais tarde`
+        }
+        
+     }
+    
+    ChamadorAPI()
+
+
+    // fetch('https://cataas.com/cat')
+    // .then(function(data){
+    //     return data.blob()
+    // }).then(function(result){
+    //     const imagemURL = URL.createObjectURL(result);
+    //     const tagImg = `<img src='${imagemURL}'/>`;
+
+    //     document.getElementById('secao-imagem').innerHTML = tagImg;
+    // })
+   </script>
+</body>
+</html>
